@@ -5,7 +5,7 @@
   "author": "AlekseyLeshko <alekseyleshko@gmail.com>",
   "license": "MIT",
   "scripts": {
-    "test": "ava test",
+    "test": "ava **/test.js",
     "test:watch": "ava **/test.js --watch",
     "precommit": "lint-staged"
   },
