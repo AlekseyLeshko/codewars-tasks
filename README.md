@@ -1,6 +1,6 @@
 Codewars Tasks
 =
-[![Codewarrior badge][codewars-mage]][codewars-url]
+[![Codewarrior badge][codewars-image]][codewars-url]
 
 ## Run decision for task
 ```
