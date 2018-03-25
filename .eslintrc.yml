@@ -2,9 +2,11 @@ env:
   es6: true
   node: true
 extends:
-  - 'eslint:recommended'
+  - eslint:recommended
+  - plugin:ava/recommended
 plugins:
   - prettier
+  - ava
 parser: 'babel-eslint'
 parserOptions:
   sourceType: module
