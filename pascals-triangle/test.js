@@ -2,9 +2,16 @@ import {describe} from 'ava-spec';
 import pascalsTriangle from './pascals-triangle';
 
 describe('pascals triangle:', it => {
-  it('should', t => {
-    const expected = [1, 1, 1, 1, 2, 1, 1, 3, 3, 1];
+  it('should return array', t => {
+    const expectedList = [
+      [1],
+      [1, 1, 1],
+      [1, 1, 1, 1, 2, 1],
+      [1, 1, 1, 1, 2, 1, 1, 3, 3, 1],
+    ];
 
-    t.deepEqual(pascalsTriangle(4), expected);
+    [...Array(expectedList.length)].forEach((num, index) => {
+      t.deepEqual(pascalsTriangle(index + 1), expectedList[index]);
+    });
   });
 });
