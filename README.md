@@ -4,7 +4,7 @@ Codewars Tasks
 
 ## Run decision for task
 ```
-y task:watch folder-name
+y task:watch
 ```
 
 [codewars-image]: https://www.codewars.com/users/AlekseyLeshko/badges/small
