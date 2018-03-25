@@ -27,7 +27,7 @@ rules:
     - 2
     - always
   no-return-assign:
-    - 2
+    - 0
   comma-dangle:
     - 2
     - always-multiline
