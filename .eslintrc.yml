@@ -1,0 +1,52 @@
+env:
+  es6: true
+  node: true
+extends:
+  - 'eslint:recommended'
+plugins:
+  - prettier
+parser: 'babel-eslint'
+parserOptions:
+  sourceType: module
+  ecmaFeatures:
+    experimentalObjectRestSpread: true
+rules:
+  indent:
+    - 2
+    - 2
+    - SwitchCase: 1
+  linebreak-style:
+    - 2
+    - unix
+  quotes:
+    - 2
+    - single
+  semi:
+    - 2
+    - always
+  no-return-assign:
+    - 2
+    - always
+  comma-dangle:
+    - 2
+    - always-multiline
+  eol-last:
+    - 2
+  no-trailing-spaces:
+    - 2
+  no-multiple-empty-lines:
+    - 2
+    - max: 1
+      maxEOF: 1
+      maxBOF: 0
+  no-case-declarations:
+    - 0
+  no-debugger: 
+    - 0
+  sort-imports:
+    - 2
+    - memberSyntaxSortOrder:
+      - 'single'
+      - 'none'
+      - 'multiple'
+      - 'all'
