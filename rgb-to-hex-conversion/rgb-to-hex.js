@@ -1,8 +1,5 @@
-export default (r, g, b) => `${numToHex(r)}${numToHex(g)}${numToHex(b)}`;
-
-const min = 0;
-const max = 255;
-const numToHex = num => {
-  num = num < min ? min : num >= max ? max : num;
-  return num === 0 ? '00' : num.toString(16).toUpperCase();
-};
+export default (r, g, b) =>
+  [r, g, b]
+    .map(x => ('0' + Math.max(0, Math.min(255, x)).toString(16)).slice(-2))
+    .join('')
+    .toUpperCase();
