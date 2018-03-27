@@ -18,4 +18,13 @@ describe('dependency injection:', it => {
 
     t.is(myFunc(), expected);
   });
+
+  it('should return func without dependencies', t => {
+    const expected = 0;
+    const myFunc = di.inject(function() {
+      return arguments.length;
+    });
+
+    t.is(myFunc(), expected);
+  });
 });
