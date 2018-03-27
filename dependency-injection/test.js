@@ -6,6 +6,9 @@ const deps = {
   dep2: () => 'this is dep2',
   dep3: () => 'this is dep3',
   dep4: () => 'this is dep4',
+  i18n: () => 'i18n',
+  login: () => 'login',
+  app: () => 'app',
 };
 const di = new DI(deps);
 
@@ -23,6 +26,15 @@ describe('dependency injection:', it => {
     const expected = 0;
     const myFunc = di.inject(function() {
       return arguments.length;
+    });
+
+    t.is(myFunc(), expected);
+  });
+
+  it('should return func', t => {
+    const expected = 'i18n, login, app';
+    const myFunc = di.inject(function (i18n, login, app) {
+      return [i18n(), login(), app()].join(', ');
     });
 
     t.is(myFunc(), expected);
