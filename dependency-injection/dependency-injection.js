@@ -3,18 +3,10 @@ var DI = function(dependency) {
 };
 
 DI.prototype.inject = function(func) {
-  const res = func
-    .toString()
-    .split(/[(|)]/g)[1]
-    .split(/,\s/g)
-    .reduce((arr, dep) => {
-      if (this.dependency[dep]) {
-        arr.push(this.dependency[dep]);
-      }
-      return arr;
-    }, []);
+  const deps = [...new Set(func.toString().match(/dep\d/g))];
+  const depList = deps.map(dep => this.dependency[dep]);
 
-  return func.bind(this, ...res);
+  return func.bind(this, ...depList);
 };
 
 export default DI;
