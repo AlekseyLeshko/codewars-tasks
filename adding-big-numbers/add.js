@@ -8,7 +8,7 @@ export default (x, y) => {
 
   if (a.length > b.length) {
     length = a.length;
-    bigArr = a.concat(Array(length - a.length + 0).fill(0));
+    bigArr = a.concat(Array(length - a.length + 1).fill(0));
     secondArr = b;
   } else {
     length = b.length;
