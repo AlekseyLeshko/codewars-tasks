@@ -1,44 +1,77 @@
 export default object => {
-  let states = [];
+  let migrations = [];
   let undos = [];
   let linkObj = object;
-  states.push({...linkObj});
 
   return {
     set: function(key, value) {
+      migrations.push({
+        undo: {
+          type: linkObj[key] ? 'set' : 'del',
+          params: linkObj[key] ? {key, value: linkObj[key]} : {key},
+        },
+        redo: {
+          type: 'set',
+          params: {
+            key,
+            value,
+          },
+        },
+      });
       linkObj[key] = value;
-      states.push({...linkObj});
     },
     get: function(key) {
       return linkObj[key];
     },
     del: function(key) {
+      migrations.push({
+        undo: {
+          type: 'set',
+          params: {
+            key,
+            value: linkObj[key],
+          },
+        },
+        redo: {
+          type: 'del',
+          params: {
+            key,
+          },
+        },
+      });
+
       delete linkObj[key];
-      states.push({...linkObj});
     },
     undo: function() {
-      if (states.length === 1) {
+      if (migrations.length === 0) {
         throw 'error';
       }
 
-      const lastState = states[states.length - 2];
+      // console.log('undos', JSON.stringify(migrations));
+      const migration = migrations[migrations.length - 1].undo;
+      // console.log(migration);
+      undos.push({...migrations[migrations.length - 1]});
 
-      linkObj = {...lastState};
-
-      undos.push({...states[states.length - 1]});
-      states = states.slice(0, -1);
+      this[migration.type].call(
+        this,
+        ...Object.keys(migration.params).map(n => migration.params[n]),
+      );
+      migrations = migrations.slice(0, -2);
     },
     redo: function() {
       if (undos.length === 0) {
         throw 'error';
       }
+      // console.log('undos', JSON.stringify(undos));
+      const migration = undos[undos.length - 1].redo;
+      // console.log(migration);
+      this[migration.type].call(
+        this,
+        ...Object.keys(migration.params).map(n => migration.params[n]),
+      );
 
-      const lastState = undos[undos.length - 1];
-
-      linkObj = {...lastState};
-
-      states.push({...undos[undos.length - 1]});
       undos = undos.slice(0, -1);
+      // migrations = migrations.slice(0, -1);
     },
   };
 };

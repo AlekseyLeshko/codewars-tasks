@@ -148,4 +148,20 @@ describe('undo/redo:', it => {
     t.is(unRe.get('x'), undefined, 'The x key should not exist');
     t.true(!obj.hasOwnProperty('x'), 'The x key should be deleted');
   });
+
+  it('set/del', t => {
+    var obj = {};
+
+    var unRe = undoRedo(obj);
+    unRe.set('x', 5);
+    unRe.set('y', 6);
+
+    t.is(unRe.get('x'), 5);
+    t.is(unRe.get('y'), 6);
+
+    unRe.undo();
+
+    t.deepEqual(obj.x, 5);
+    t.true(!obj.hasOwnProperty('y'));
+  });
 });
