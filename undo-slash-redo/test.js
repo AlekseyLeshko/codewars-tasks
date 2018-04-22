@@ -141,11 +141,11 @@ describe('undo/redo:', it => {
     var unRe = undoRedo(obj);
     unRe.del('x');
     t.is(unRe.get('x'), undefined, 'The x key should not exist');
-    t.is(!obj.hasOwnProperty('x'), 'The x key should be deleted');
+    t.true(!obj.hasOwnProperty('x'), 'The x key should be deleted');
     unRe.undo();
     t.is(unRe.get('x'), 1, 'A new key has been added');
     unRe.redo();
     t.is(unRe.get('x'), undefined, 'The x key should not exist');
-    t.is(!obj.hasOwnProperty('x'), 'The x key should be deleted');
+    t.true(!obj.hasOwnProperty('x'), 'The x key should be deleted');
   });
 });
