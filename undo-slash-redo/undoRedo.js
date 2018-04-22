@@ -57,15 +57,12 @@ export default object => {
       }
 
       const migration = migrations[migrations.length - 1].undo;
-      // console.log(migration);
 
       undos.push({...migrations[migrations.length - 1]});
-      // console.log(migrations);
       helper[migration.type].call(
         this,
         ...Object.keys(migration.params).map(n => migration.params[n]),
       );
-      // console.log(migrations);
       migrations = migrations.slice(0, -1);
     },
     redo: function() {
