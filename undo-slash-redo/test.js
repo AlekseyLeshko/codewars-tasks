@@ -163,5 +163,18 @@ describe('undo/redo:', it => {
 
     t.deepEqual(obj.x, 5);
     t.true(!obj.hasOwnProperty('y'));
+
+    unRe.set('y', 66);
+
+    t.is(unRe.get('x'), 5);
+    t.is(unRe.get('y'), 66);
+
+    try {
+      unRe.redo();
+      t.is(false);
+    } catch (e) {
+      t.is(unRe.get('x'), 5);
+      t.is(unRe.get('y'), 66);
+    }
   });
 });
