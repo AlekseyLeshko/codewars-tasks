@@ -1,84 +1,53 @@
 export default object => {
-  let migrations = [];
-  let undos = [];
-  // let object = object;
-
-  const helper = {
-    set: (key, value) => {
-      object[key] = value;
-    },
-    del: key => {
-      delete object[key];
-    },
+  let commands = [];
+  let index = -1;
+  const addCmd = cmd => {
+    commands.splice(index + 1, commands.length - index);
+    commands.push(cmd);
+    index = commands.length - 1;
   };
 
   return {
-    set: function(key, value) {
-      undos = [];
-      migrations.push({
-        undo: {
-          type: object[key] ? 'set' : 'del',
-          params: object[key] ? {key, value: object[key]} : {key},
-        },
-        redo: {
-          type: 'set',
-          params: {
-            key,
-            value,
-          },
-        },
-      });
-      helper.set(key, value);
+    set: (key, value) => {
+      const prev = object[key];
+      const cmd = {
+        exec: () => (object[key] = value),
+        undo: () => (prev ? (object[key] = prev) : delete object[key]),
+      };
+
+      cmd.exec();
+      addCmd(cmd);
     },
     get: function(key) {
       return object[key];
     },
-    del: function(key) {
-      migrations.push({
-        undo: {
-          type: 'set',
-          params: {
-            key,
-            value: object[key],
-          },
-        },
-        redo: {
-          type: 'del',
-          params: {
-            key,
-          },
-        },
-      });
-      helper.del(key);
+    del: key => {
+      const prev = object[key];
+      const cmd = {
+        exec: () => delete object[key],
+        undo: () => (object[key] = prev),
+      };
+
+      addCmd(cmd);
+      cmd.exec();
     },
     undo: function() {
-      if (migrations.length === 0) {
+      const cmd = commands[index];
+      if (!cmd) {
         throw 'error';
       }
 
-      const migration = migrations[migrations.length - 1].undo;
-
-      undos.push({...migrations[migrations.length - 1]});
-      helper[migration.type].call(
-        this,
-        ...Object.keys(migration.params).map(n => migration.params[n]),
-      );
-      migrations = migrations.slice(0, -1);
+      cmd.undo();
+      index--;
     },
     redo: function() {
-      if (undos.length === 0) {
+      const cmd = commands[index + 1];
+      if (!cmd) {
         throw 'error';
       }
 
-      const migration = undos[undos.length - 1].redo;
-      migrations.push(undos[undos.length - 1]);
-      helper[migration.type].call(
-        this,
-        ...Object.keys(migration.params).map(n => migration.params[n]),
-      );
-
-      undos = undos.slice(0, -1);
-      // migrations = migrations.slice(0, -1);
+      cmd.exec();
+      index++;
     },
   };
 };

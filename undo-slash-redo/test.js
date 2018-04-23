@@ -155,26 +155,19 @@ describe('undo/redo:', it => {
     var unRe = undoRedo(obj);
     unRe.set('x', 5);
     unRe.set('y', 6);
-
-    t.is(unRe.get('x'), 5);
-    t.is(unRe.get('y'), 6);
+    t.deepEqual(obj, {x: 5, y: 6});
 
     unRe.undo();
-
-    t.deepEqual(obj.x, 5);
-    t.true(!obj.hasOwnProperty('y'));
+    t.deepEqual(obj, {x: 5});
 
     unRe.set('y', 66);
-
-    t.is(unRe.get('x'), 5);
-    t.is(unRe.get('y'), 66);
+    t.deepEqual(obj, {x: 5, y: 66});
 
     try {
       unRe.redo();
       t.is(false);
     } catch (e) {
-      t.is(unRe.get('x'), 5);
-      t.is(unRe.get('y'), 66);
+      t.deepEqual(obj, {x: 5, y: 66});
     }
   });
 });
