@@ -1,14 +1,14 @@
 export default object => {
   let migrations = [];
   let undos = [];
-  let linkObj = object;
+  // let object = object;
 
   const helper = {
     set: (key, value) => {
-      linkObj[key] = value;
+      object[key] = value;
     },
     del: key => {
-      delete linkObj[key];
+      delete object[key];
     },
   };
 
@@ -17,8 +17,8 @@ export default object => {
       undos = [];
       migrations.push({
         undo: {
-          type: linkObj[key] ? 'set' : 'del',
-          params: linkObj[key] ? {key, value: linkObj[key]} : {key},
+          type: object[key] ? 'set' : 'del',
+          params: object[key] ? {key, value: object[key]} : {key},
         },
         redo: {
           type: 'set',
@@ -31,7 +31,7 @@ export default object => {
       helper.set(key, value);
     },
     get: function(key) {
-      return linkObj[key];
+      return object[key];
     },
     del: function(key) {
       migrations.push({
@@ -39,7 +39,7 @@ export default object => {
           type: 'set',
           params: {
             key,
-            value: linkObj[key],
+            value: object[key],
           },
         },
         redo: {
