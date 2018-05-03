@@ -7,4 +7,10 @@ describe('anagram detection:', it => {
 
     list.forEach(arr => t.true(isAnagram(arr[0], arr[1])));
   });
+
+  it('should all word pairs is not anagram', t => {
+    const list = [['foefet', 'tofee'], ['Buckethead', 'DeatCubeK']];
+
+    list.forEach(arr => t.false(isAnagram(arr[0], arr[1])));
+  });
 });
