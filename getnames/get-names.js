@@ -1,3 +1,1 @@
-export default (dataObj) => {
-  return dataObj.map(obj => obj.name);
-};
+export default (dataObj) => dataObj.map(obj => obj.name);
