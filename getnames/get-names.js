@@ -1,3 +1,3 @@
 export default (dataObj) => {
-  return [];
+  return dataObj.map(obj => obj.name);
 };

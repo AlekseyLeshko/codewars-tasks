@@ -10,6 +10,6 @@ describe('get names:', it => {
     ];
     const expected = ['Joe', 'Bill', 'Kate'];
 
-    t.is(getNames(data), expected);
+    t.deepEqual(getNames(data), expected);
   });
 });
