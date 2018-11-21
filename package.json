@@ -6,7 +6,7 @@
   "license": "MIT",
   "scripts": {
     "test": "ava **/test.js",
-    "test:watch": "ava **/test.js --watch",
+    "tdd": "ava **/test.js --watch",
     "test:watch:benchmark": "ava **/benchmark.js --watch"
   },
   "dependencies": {},
