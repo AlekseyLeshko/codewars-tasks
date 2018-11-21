@@ -7,8 +7,7 @@
   "scripts": {
     "test": "ava **/test.js",
     "test:watch": "ava **/test.js --watch",
-    "test:watch:benchmark": "ava **/benchmark.js --watch",
-    "precommit": "lint-staged"
+    "test:watch:benchmark": "ava **/benchmark.js --watch"
   },
   "dependencies": {},
   "devDependencies": {
@@ -21,10 +20,10 @@
     "eslint": "^4.19.1",
     "eslint-plugin-ava": "^4.5.1",
     "eslint-plugin-prettier": "^2.6.0",
-    "husky": "^0.14.3",
+    "husky": "^1.2.0",
     "import-sort-parser-babylon": "^4.2.0",
     "import-sort-style-eslint": "^4.2.0",
-    "lint-staged": "^7.0.4",
+    "lint-staged": "^8.1.0",
     "prettier": "^1.12.1"
   },
   "ava": {
@@ -41,8 +40,7 @@
   },
   "lint-staged": {
     "*.js": [
-      "eslint",
-      "git add"
+      "eslint"
     ]
   }
 }
