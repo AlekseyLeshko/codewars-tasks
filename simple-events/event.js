@@ -1,18 +1,18 @@
 class Event {
   constructor() {
-    this.handlers = new Set();
+    this.subscribers = new Set();
   }
 
   subscribe(fun) {
-    this.handlers.add(fun);
+    this.subscribers.add(fun);
   }
 
   unsubscribe(fun) {
-    this.handlers.delete(fun);
+    this.subscribers.delete(fun);
   }
 
   emit() {
-    this.handlers.forEach(fun => fun(...arguments));
+    this.subscribers.forEach(fun => fun(...arguments));
   }
 }
 
