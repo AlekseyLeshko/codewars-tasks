@@ -1,20 +1,18 @@
 class Event {
   constructor() {
-    this.handlers = [];
+    this.handlers = new Set();
   }
 
   subscribe(fun) {
-    this.handlers.push(fun);
+    this.handlers.add(fun);
   }
 
   unsubscribe(fun) {
-    this.handlers.splice(this.handlers.indexOf(fun), 1);
+    this.handlers.delete(fun);
   }
 
   emit() {
-    Object
-      .values(this.handlers)
-      .map(fun => fun(...arguments));
+    this.handlers.forEach(fun => fun(...arguments));
   }
 }
 
