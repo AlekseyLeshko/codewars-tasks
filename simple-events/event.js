@@ -1,14 +1,14 @@
 class Event {
   constructor() {
-    this.handlers = {};
+    this.handlers = [];
   }
 
   subscribe(fun) {
-    this.handlers[fun] = fun;
+    this.handlers.push(fun);
   }
 
   unsubscribe(fun) {
-    delete this.handlers[fun];
+    this.handlers.splice(this.handlers.indexOf(fun), 1);
   }
 
   emit() {
