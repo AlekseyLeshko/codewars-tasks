@@ -20,5 +20,33 @@ describe('advanced events:', it => {
     event.emit(bucket);
 
     t.deepEqual(bucket, ['l']);
+
+    event.unsubscribe(l);
+
+    event.emit(bucket);
+  });
+
+  it('should', t => {
+    const argms = [
+      100500,
+      l,
+      { hello: 'world' },
+      'foo',
+      undefined,
+      o,
+      null,
+      'banana',
+      ['a', 2],
+      false,
+      NaN,
+    ];
+    let bucket = [];
+
+    const event = new Event();
+
+    event.subscribe(...argms);
+    event.emit(bucket);
+
+    t.deepEqual(bucket, ['l', 'o']);
   });
 });
