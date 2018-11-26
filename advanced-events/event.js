@@ -1,30 +1,24 @@
-let subscribers = [];
-class Event {
-  constructor() {
+const getOnlyFunction = (arr) =>
+  arr.filter(argm => typeof(argm) === 'function');
+
+const Event = (() => {
+  let subscribers = [];
+
+  return function() {
     subscribers = [];
-  }
 
-  subscribe() {
-    Array(...arguments)
-      .filter(argm => typeof(argm) === 'function')
-      .forEach(fun => subscribers.push(fun));
-  }
+    this.subscribe = (...argms) =>
+      getOnlyFunction(argms).forEach(fun => subscribers.push(fun));
 
-  unsubscribe(...argms) {
-    argms
-      .filter(argm => typeof(argm) === 'function')
-      .forEach(fun => {
-        const index = subscribers.lastIndexOf(fun);
-        if (index) {
-          subscribers.splice(index, 1);
-        }
-      });
-  }
+    this.unsubscribe = (...argms) =>
+      getOnlyFunction(argms)
+        .filter(fun => subscribers.lastIndexOf(fun) > -1)
+        .forEach(fun => subscribers.splice(subscribers.lastIndexOf(fun), 1));
 
-  emit() {
-    const currentSubscribers = [...subscribers];
-    currentSubscribers.forEach(fun => fun.bind(this)(...arguments));
-  }
-}
+    this.emit = function() {
+      [...subscribers].forEach(fun => fun.apply(this, arguments));
+    };
+  };
+})();
 
 export default Event;

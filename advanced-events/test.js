@@ -26,7 +26,7 @@ describe('advanced events:', it => {
     event.emit(bucket);
   });
 
-  it('should', t => {
+  it('should wirk with all types', t => {
     const argms = [
       100500,
       l,
