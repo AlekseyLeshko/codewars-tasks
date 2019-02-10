@@ -1,25 +1,30 @@
-export default (n) => {
-  const arr = (new Array(n)).fill(1);
-  let k2 = 0, k3 = 0, k5 = 0;
+const helperFun = (multiplier) =>
+  (data) =>
+    (key) => multiplier * data.arr[data[key]]
 
-  for (let j = 1; j < n; j++) {
-    const x2 = arr[k2] * 2;
-    const x3 = arr[k3] * 3;
-    const x5 = arr[k5] * 5;
+const x2 = helperFun(2)
+const x3 = helperFun(3)
+const x5 = helperFun(5)
 
-    if (x2 <= x3 && x2 <= x5) {
-      arr[j] = x2;
-      k2++;
-    }
-    if (x3 <= x2 && x3 <= x5) {
-      arr[j] = x3;
-      k3++;
-    }
-    if (x5 <= x2 && x5 <= x3) {
-      arr[j] = x5;
-      k5++;
-    }
-  }
+const updateIndex = (res) =>
+  (min) =>
+    (data) =>
+      (key) => res === min ? data[key]++ : undefined
 
-  return arr[n - 1];
-};
+export default (n) =>
+  (new Array(n - 1))
+    .fill(0)
+    .reduce((data) => {
+      const iRes = x2(data)('i')
+      const jRes = x3(data)('j')
+      const kRes = x5(data)('k')
+
+      const min = Math.min(iRes, jRes, kRes)
+      updateIndex(iRes)(min)(data)('i')
+      updateIndex(jRes)(min)(data)('j')
+      updateIndex(kRes)(min)(data)('k')
+
+      data.arr.push(min)
+      return data
+    }, { arr: [1], i: 0, j: 0, k: 0 })
+    .arr.pop()
