@@ -25,7 +25,7 @@ rules:
     - single
   semi:
     - 2
-    - always
+    - never
   no-return-assign:
     - 0
   comma-dangle:
