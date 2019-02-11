@@ -1,7 +1,2 @@
 export default (n) =>
-  Number((n)
-    .toString()
-    .split('')
-    .map(Number)
-    .sort((a, b) => b - a)
-    .join(''))
+  Number(String(n).split('').sort().reverse().join(''))
