@@ -3,11 +3,18 @@ const qsort = (arr) => {
     return []
   }
 
+  if (arr.length === 1) {
+    return arr
+  }
+
   const left = []
   const right = []
-  const pivot = arr[0]
+  const pivot = arr[Math.ceil(arr.length / 2)]
 
-  for (let i = 1; i < arr.length; i++) {
+  for (let i = 0; i < arr.length; i++) {
+    if (arr[i] === pivot) {
+      continue
+    }
     if(arr[i] < pivot) {
       left.push(arr[i])
     } else {
