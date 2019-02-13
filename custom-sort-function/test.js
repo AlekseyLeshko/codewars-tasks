@@ -4,15 +4,32 @@ import qsort from './qsort'
 
 describe('custom-sort-function:', it => {
   it('bubble sort', t => {
-    t.deepEqual(bubbleSort([1]), [1])
-    t.deepEqual(bubbleSort([1, 3, 2]), [1, 2, 3])
-    t.deepEqual(bubbleSort(['abc', 'adc', 'acc']), ['abc','acc','adc'])
-    t.deepEqual(bubbleSort([1, 3, 2, -99, 0, 34, 13]), [-99, 0, 1, 2, 3, 13, 34])
+    const list = [{
+      arr: [1, -3, 12, 5, -99, 26, 7, 0, 14, 3, 7, 2, 3],
+      expected: [-99, -3, 0, 1, 2, 3, 3, 5, 7, 7, 12, 14, 26],
+    }, {
+      arr: [1],
+      expected: [1],
+    }, {
+      arr: ['abc', 'adc', 'acc'],
+      expected: ['abc','acc','adc'],
+    }]
+
+    list.forEach(({ arr, expected }) => t.deepEqual(bubbleSort(arr), expected))
   })
 
   it('quicksort', t => {
-    t.deepEqual(qsort([1]), [1])
-    t.deepEqual(qsort([1, 3, 2, -99, 0, 34, 13]), [-99, 0, 1, 2, 3, 13, 34])
-    t.deepEqual(qsort(['abc', 'adc', 'acc']), ['abc','acc','adc'])
+    const list = [{
+      arr: [1, -3, 12, 5, -99, 26, 7, 0, 14, 3, 7, 2, 3],
+      expected: [-99, -3, 0, 1, 2, 3, 3, 5, 7, 7, 12, 14, 26],
+    }, {
+      arr: [1],
+      expected: [1],
+    }, {
+      arr: ['abc', 'adc', 'acc'],
+      expected: ['abc','acc','adc'],
+    }]
+
+    list.forEach(({ arr, expected }) => t.deepEqual(qsort(arr), expected))
   })
 })

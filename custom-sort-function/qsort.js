@@ -1,28 +1,30 @@
-const qsort = (arr) => {
-  if (arr.length === 0) {
-    return []
-  }
+const partition = (arr, left, right) => {
+  let i = left, j = right
+  const pivot = arr[(left + right) >> 1]
 
-  if (arr.length === 1) {
-    return arr
-  }
+  while (i <= j) {
+    while (arr[i] < pivot) i++
+    while (arr[j] > pivot) j--
 
-  const left = []
-  const right = []
-  const pivot = arr[Math.ceil(arr.length / 2)]
-
-  for (let i = 0; i < arr.length; i++) {
-    if (arr[i] === pivot) {
-      continue
-    }
-    if(arr[i] < pivot) {
-      left.push(arr[i])
-    } else {
-      right.push(arr[i])
+    if (i <= j) {
+      const tmp = arr[i]
+      arr[i] = arr[j]
+      arr[j] = tmp
+      i++
+      j--
     }
   }
 
-  return qsort(left).concat(pivot, qsort(right))
+  return i
 }
 
-export default qsort
+const quickSort = (arr, left, right) => {
+  const index = partition(arr, left, right)
+  if (left < index - 1)
+    quickSort(arr, left, index - 1)
+  if (index < right)
+    quickSort(arr, index, right)
+  return arr
+}
+
+export default (arr) => quickSort(arr, 0, arr.length - 1)
