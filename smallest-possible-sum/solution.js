@@ -1,36 +1,17 @@
-const getMaxIndex = (n) => {
-  let maxIndex = 0
-  let max = n[0]
-  for (let i = 1; i < n.length; i++) {
-    if (n[i] > max) {
-      maxIndex = i
-      max = n[i]
-    }
-  }
-
-  return maxIndex
-}
+import qsort from './qsort.js'
 
 const smallestPossibleSum = (n) => {
-  const maxIndex = getMaxIndex(n)
+  n = qsort(n)
+  const [i, j] = [...new Set(n)]
+    .slice(0, 2)
+    .map(item => n.indexOf(item))
 
-  let isOver = true
-  for (let i = 0; i < n.length; i++) {
-    if (i === maxIndex) {
-      continue
-    }
-
-    if (n[maxIndex] > n[i]) {
-      n[maxIndex] = n[maxIndex] - n[i]
-      isOver = false
-    }
+  if (n[i] > n[j]) {
+    n[i] = n[i] - n[j]
+    return smallestPossibleSum(n)
   }
 
-  if (isOver) {
-    return n.reduce((sum, item) => sum += item, 0)
-  }
-
-  return smallestPossibleSum(n)
+  return n.reduce((sum, item) => sum += item, 0)
 }
 
 export default smallestPossibleSum
