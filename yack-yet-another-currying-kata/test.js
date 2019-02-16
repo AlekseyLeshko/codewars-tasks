@@ -7,6 +7,7 @@ describe('YACK (Yet Another Currying Kata):', it => {
       return a + b + c
     }
 
+    t.is(yack(add, 1, 2, 3), 6)
     t.is(yack(add)(1)(2)(3), 6)
     t.is(yack(add, 1, 2)(3), 6)
     t.is(yack(add)(1, 2)(3), 6)
