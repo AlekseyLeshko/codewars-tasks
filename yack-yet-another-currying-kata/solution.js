@@ -1,20 +1,24 @@
 const yack = (fn, ...parameters) => {
-  if (fn.name === 'helperFun') {
-    return fn
+  if (fn.name === 'wrapper') {
+    return fn(...parameters)
+  }
+
+  if (parameters.length >= fn.length) {
+    return fn(...parameters.slice(0, fn.length))
   }
 
   const helperFun = (allArgs, maxCount, ...args) => {
     allArgs.push(...args)
     if (allArgs.length >= maxCount) {
-      return fn(...allArgs.slice(0, 3))
+      return fn(...allArgs.slice(0, maxCount))
     }
 
-    return (...args) => {
-      return helperFun([...allArgs], fn.length, ...args)
+    return function wrapper(...args) {
+      return helperFun([...allArgs], maxCount, ...args)
     }
   }
 
-  return (...args) => {
+  return function wrapper(...args) {
     return helperFun([...parameters], fn.length, ...args)
   }
 }
