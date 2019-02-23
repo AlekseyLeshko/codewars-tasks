@@ -1,23 +1,17 @@
-export default (arr) => {
-  let answer = -1
-
+export default (arr) =>
   arr
-    .reduce((leftSum, leftItem, leftIndex) => {
-      if (answer !== -1) {
-        return leftSum
-      }
+    .reduce((data, item, index) => {
+      if (data.answer !== -1) return data
 
-      let rightSum = 0
-      for (let i = leftIndex + 1; i < arr.length; i++) {
-        rightSum += arr[i]
-      }
+      let rightSum = data.rightSum - (data.leftSum + item)
 
-      if (leftSum === rightSum) {
-        answer = leftIndex
-      }
+      if (data.leftSum === rightSum) data.answer = index
 
-      return leftSum += leftItem
-    }, 0)
-
-  return answer
-}
+      data.leftSum += item
+      return data
+    }, {
+      leftSum: 0,
+      answer: -1,
+      rightSum: arr.reduce((acc, item) => acc += item, 0),
+    })
+    .answer
