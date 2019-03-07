@@ -14,5 +14,8 @@ describe('simple-number-sequence:', it => {
     t.is(missing('99991000110002'), 10000)
     t.is(missing('979899100101102'), -1)
     t.is(missing('900001900002900004900005900006'), 900003)
+
+    t.is(missing('1234567810111213'), 9)
+    t.is(missing('123456789111213'), 10)
   })
 })
