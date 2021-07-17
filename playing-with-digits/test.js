@@ -1,5 +1,5 @@
-import { describe } from 'ava-spec';
-import digPow from './digPow';
+import { describe } from 'ava-spec'
+import digPow from './digPow'
 
 describe('playing-with-digits:', it => {
   it('should return coefficient or -1', t => {
@@ -19,13 +19,13 @@ describe('playing-with-digits:', it => {
       number: 46288,
       power: 3,
       expected : 51,
-    }];
+    }]
 
     list.map((item) => {
-      const actual = digPow(item.number, item.power);
+      const actual = digPow(item.number, item.power)
 
-      t.is(actual, item.expected);
-    });
-  });
-});
+      t.is(actual, item.expected)
+    })
+  })
+})
 

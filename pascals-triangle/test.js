@@ -1,5 +1,5 @@
-import {describe} from 'ava-spec';
-import pascalsTriangle from './pascals-triangle';
+import {describe} from 'ava-spec'
+import pascalsTriangle from './pascals-triangle'
 
 describe('pascals triangle:', it => {
   it('should return array', t => {
@@ -11,7 +11,7 @@ describe('pascals triangle:', it => {
     ];
 
     [...Array(expectedList.length)].forEach((num, index) => {
-      t.deepEqual(pascalsTriangle(index + 1), expectedList[index]);
-    });
-  });
-});
+      t.deepEqual(pascalsTriangle(index + 1), expectedList[index])
+    })
+  })
+})

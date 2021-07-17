@@ -5,4 +5,4 @@ export default (v1, v2, g) =>
       .toISOString()
       .substr(11, 8)
       .split(':')
-      .map(Number);
+      .map(Number)

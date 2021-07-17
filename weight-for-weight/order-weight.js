@@ -12,4 +12,4 @@ export default string =>
           : a.weight - b.weight,
     )
     .map(item => item.val)
-    .join(' ');
+    .join(' ')

@@ -1,5 +1,5 @@
 export default n => {
-  const list = [[1]];
+  const list = [[1]]
   for (let i = 1; i < n; i++) {
     const row = [
       1,
@@ -7,9 +7,9 @@ export default n => {
         (num, index) => list[i - 1][index] + list[i - 1][index + 1],
       ),
       1,
-    ];
-    list.push(row);
+    ]
+    list.push(row)
   }
 
-  return list.reduce((res, row) => res.concat(row), []);
-};
+  return list.reduce((res, row) => res.concat(row), [])
+}

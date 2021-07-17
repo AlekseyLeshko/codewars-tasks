@@ -6,7 +6,7 @@ const romans = {
   C: 100,
   D: 500,
   M: 1000,
-};
+}
 
 export default roman =>
   roman
@@ -17,4 +17,4 @@ export default roman =>
           ? (sum -= romans[n])
           : (sum += romans[n]),
       0,
-    );
+    )

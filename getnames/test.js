@@ -1,5 +1,5 @@
-import { describe } from 'ava-spec';
-import getNames from './get-names';
+import { describe } from 'ava-spec'
+import getNames from './get-names'
 
 describe('get names:', it => {
   it('should return answer', t => {
@@ -7,9 +7,9 @@ describe('get names:', it => {
       {name: 'Joe', age: 20},
       {name: 'Bill', age: 30},
       {name: 'Kate', age: 23},
-    ];
-    const expected = ['Joe', 'Bill', 'Kate'];
+    ]
+    const expected = ['Joe', 'Bill', 'Kate']
 
-    t.deepEqual(getNames(data), expected);
-  });
-});
+    t.deepEqual(getNames(data), expected)
+  })
+})

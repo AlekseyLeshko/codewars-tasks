@@ -1,25 +1,25 @@
 export default function(str) {
-  let arr = str.split(/[\s-!,]+/);
+  let arr = str.split(/[\s-!,]+/)
   arr.map(function(curr) {
     if (isSmallWord(curr) || !str.includes(curr)) {
-      return;
+      return
     }
 
-    const abbreviateStr = getAbbreviate(curr);
-    str = str.replace(curr, abbreviateStr);
-  });
+    const abbreviateStr = getAbbreviate(curr)
+    str = str.replace(curr, abbreviateStr)
+  })
 
-  return str;
+  return str
 }
 
 function getAbbreviate(str) {
-  let res = str[0];
-  res += str.length - 2;
-  res += str[str.length - 1];
+  let res = str[0]
+  res += str.length - 2
+  res += str[str.length - 1]
 
-  return res;
+  return res
 }
 
 function isSmallWord(str) {
-  return str.length <= 3;
+  return str.length <= 3
 }

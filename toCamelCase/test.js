@@ -1,9 +1,9 @@
-import { describe } from 'ava-spec';
-import toCamelCase from './toCamelCase';
+import { describe } from 'ava-spec'
+import toCamelCase from './toCamelCase'
 
 describe('toCamelCase:', it => {
   it('should convert all strings to camel case', t => {
-    const expected = 'helloWorld';
+    const expected = 'helloWorld'
     const list = [
       'hello_world',
       '_hello_world',
@@ -17,11 +17,11 @@ describe('toCamelCase:', it => {
       '_Hello_World-',
       'hello world',
       '__HELLO_WORLD___',
-    ];
+    ]
 
     list.map((str) => {
-      t.is(toCamelCase(str), expected);
-    });
-  });
-});
+      t.is(toCamelCase(str), expected)
+    })
+  })
+})
 

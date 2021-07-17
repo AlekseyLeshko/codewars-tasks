@@ -5,4 +5,4 @@ export default (row, col) =>
       Array(col)
         .fill()
         .map((c, cIndex) =>
-          ((rIndex + 1) * (cIndex + 1))));
+          ((rIndex + 1) * (cIndex + 1))))

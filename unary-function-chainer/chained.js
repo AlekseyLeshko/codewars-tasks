@@ -1,3 +1,3 @@
 export default (funs) =>
-  (initVal) => funs.reduce((val, fun) => fun(val), initVal);
+  (initVal) => funs.reduce((val, fun) => fun(val), initVal)
 

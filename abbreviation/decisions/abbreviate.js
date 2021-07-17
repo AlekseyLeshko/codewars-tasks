@@ -1,70 +1,70 @@
 function isChar(str) {
-  return str.length === 1 && str.match(/[a-z]/i) !== null;
+  return str.length === 1 && str.match(/[a-z]/i) !== null
 }
 
 function isSmallWord(startIndex, endIndex) {
-  const charCount = endIndex - startIndex + 1;
-  return charCount < 4;
+  const charCount = endIndex - startIndex + 1
+  return charCount < 4
 }
 
 function getAbbreviate(startIndex, endIndex, arr) {
-  let res = arr[startIndex];
+  let res = arr[startIndex]
   if (isSmallWord(startIndex, endIndex)) {
     for (let i = startIndex + 1; i <= endIndex; i++) {
-      res += arr[i];
+      res += arr[i]
     }
   } else {
-    res += endIndex - startIndex - 1;
-    res += arr[endIndex];
+    res += endIndex - startIndex - 1
+    res += arr[endIndex]
   }
 
-  return res;
+  return res
 }
 
 function inWord(curr, index, arr) {
   if (!isChar(curr)) {
-    endIndex = index - 1;
-    list.push(getAbbreviate(startIndex, endIndex, arr));
-    list.push(curr);
+    endIndex = index - 1
+    list.push(getAbbreviate(startIndex, endIndex, arr))
+    list.push(curr)
 
-    return false;
+    return false
   }
   if (index === arr.length - 1) {
-    endIndex = index;
-    list.push(getAbbreviate(startIndex, endIndex, arr));
+    endIndex = index
+    list.push(getAbbreviate(startIndex, endIndex, arr))
 
-    return false;
+    return false
   }
   if (isChar(curr)) {
-    return true;
+    return true
   }
 }
 
 function outWord(curr, index, arr) {
   if (!isChar(curr)) {
-    list.push(curr);
-    return false;
+    list.push(curr)
+    return false
   }
 
   if (index === arr.length - 1) {
-    list.push(curr);
+    list.push(curr)
   }
-  startIndex = index;
-  return true;
+  startIndex = index
+  return true
 }
 
-let startIndex = 0;
-let endIndex = 0;
-let list = [];
+let startIndex = 0
+let endIndex = 0
+let list = []
 
 let abbreviate = function(str) {
-  list = [];
+  list = []
 
   str.split('').reduce(function(res, curr, index, arr) {
-    return res ? inWord(curr, index, arr) : outWord(curr, index, arr);
-  }, false);
+    return res ? inWord(curr, index, arr) : outWord(curr, index, arr)
+  }, false)
 
-  return list.join('');
-};
+  return list.join('')
+}
 
-export default abbreviate;
+export default abbreviate

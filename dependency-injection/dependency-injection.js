@@ -1,6 +1,6 @@
 var DI = function(dependency) {
-  this.dependency = dependency;
-};
+  this.dependency = dependency
+}
 
 DI.prototype.inject = function(func) {
   const res = func
@@ -9,13 +9,13 @@ DI.prototype.inject = function(func) {
     .split(/,\s/g)
     .reduce((arr, dep) => {
       if (this.dependency[dep]) {
-        arr.push(this.dependency[dep]);
+        arr.push(this.dependency[dep])
       }
 
-      return arr;
-    }, []);
+      return arr
+    }, [])
 
-  return func.bind(this, ...res);
-};
+  return func.bind(this, ...res)
+}
 
-export default DI;
+export default DI

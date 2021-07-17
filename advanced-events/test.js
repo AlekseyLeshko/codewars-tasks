@@ -1,30 +1,30 @@
-import Event from './event';
-import { describe } from 'ava-spec';
+import Event from './event'
+import { describe } from 'ava-spec'
 
-function l(arr) { arr.push('l'); }
-function o(arr) { arr.push('o'); }
+function l(arr) { arr.push('l') }
+function o(arr) { arr.push('o') }
 
 describe('advanced events:', it => {
   it('should work like advanced event', t => {
-    let bucket = [];
-    const event = new Event();
+    let bucket = []
+    const event = new Event()
 
-    event.subscribe(l, o, l);
-    event.emit(bucket);
+    event.subscribe(l, o, l)
+    event.emit(bucket)
 
-    t.deepEqual(bucket, ['l', 'o', 'l']);
+    t.deepEqual(bucket, ['l', 'o', 'l'])
 
-    event.unsubscribe(o, l);
-    bucket = [];
+    event.unsubscribe(o, l)
+    bucket = []
 
-    event.emit(bucket);
+    event.emit(bucket)
 
-    t.deepEqual(bucket, ['l']);
+    t.deepEqual(bucket, ['l'])
 
-    event.unsubscribe(l);
+    event.unsubscribe(l)
 
-    event.emit(bucket);
-  });
+    event.emit(bucket)
+  })
 
   it('should wirk with all types', t => {
     const argms = [
@@ -39,14 +39,14 @@ describe('advanced events:', it => {
       ['a', 2],
       false,
       NaN,
-    ];
-    let bucket = [];
+    ]
+    let bucket = []
 
-    const event = new Event();
+    const event = new Event()
 
-    event.subscribe(...argms);
-    event.emit(bucket);
+    event.subscribe(...argms)
+    event.emit(bucket)
 
-    t.deepEqual(bucket, ['l', 'o']);
-  });
-});
+    t.deepEqual(bucket, ['l', 'o'])
+  })
+})
