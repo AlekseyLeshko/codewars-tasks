@@ -5,8 +5,11 @@
   "author": "AlekseyLeshko <alekseyleshko@gmail.com>",
   "license": "MIT",
   "scripts": {
-    "test": "ava **/test.js",
+    "lint": "lint-staged",
+    "lint:all": "eslint --max-warnings=0 --cache --ext .js,.jsx,.ts,.tsx .",
+    "lint:all:fix": "eslint --fix --ext .js,.jsx,.ts,.tsx .",
     "tdd": "ava **/test.js --watch",
+    "test": "ava **/test.js",
     "test:watch:benchmark": "ava **/benchmark.js --watch"
   },
   "dependencies": {},
