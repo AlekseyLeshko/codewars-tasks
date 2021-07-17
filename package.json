@@ -21,7 +21,7 @@
     "husky": "^7.0.0",
     "import-sort-parser-babylon": "^6.0.0",
     "import-sort-style-eslint": "^6.0.0",
-    "lint-staged": "^8.1.5",
+    "lint-staged": "^11.0.1",
     "prettier": "^1.16.4"
   },
   "importSort": {
