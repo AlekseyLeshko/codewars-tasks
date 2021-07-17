@@ -4,12 +4,12 @@ Codewars Tasks
 
 ## Run decision for task
 ```
-y task:watch
+yarn task:watch
 ```
 
 ## Run benchmark for decision
 ```
-y task:watch:benchmark
+yarn task:watch:benchmark
 ```
 
 [codewars-image]: https://www.codewars.com/users/AlekseyLeshko/badges/small
