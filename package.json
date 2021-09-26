@@ -6,8 +6,8 @@
   "license": "MIT",
   "scripts": {
     "lint": "lint-staged",
-    "lint:all": "eslint --max-warnings=0 --cache --ext .js,.jsx,.ts,.tsx .",
-    "lint:all:fix": "eslint --fix --ext .js,.jsx,.ts,.tsx .",
+    "lint:all": "eslint --max-warnings=0 --cache --ext .js,.jsx .",
+    "lint:all:fix": "eslint --fix --ext .js,.jsx .",
     "tdd": "ava **/test.js --watch",
     "test": "ava **/test.js",
     "test:watch:benchmark": "ava **/benchmark.js --watch"
