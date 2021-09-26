@@ -10,7 +10,7 @@ describe('your order, please:', () => {
   }, {
     string: '',
     expected: '',
-  }])('should return answer', ({ string, expected }) => {
+  }])('should check the "$string" string', ({ string, expected }) => {
     expect(order(string)).toBe(expected)
   })
 })
